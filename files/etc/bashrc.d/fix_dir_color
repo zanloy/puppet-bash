@@ -1,0 +1,2 @@
+# Fix directory colors for poor PuTTY users
+export LS_COLORS=$LS_COLORS:di="00;94"

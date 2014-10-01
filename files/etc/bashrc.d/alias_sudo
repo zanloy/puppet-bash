@@ -1,0 +1,5 @@
+# Alias
+alias puppet='sudo puppet'
+alias yum='sudo yum'
+alias vi='vim'
+

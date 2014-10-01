@@ -1,0 +1,75 @@
+# ******************************************************************
+# *                                                                *
+# * This file is managed by puppet. Do not manually edit this file *
+# * or anything you change will be reverted on the next puppet     *
+# * agent check-in.                                                *
+# *                                                                *
+# ******************************************************************
+
+<% @colour = (@environment == 'prd' ? 'red' : 'green') -%>
+# System wide functions and aliases
+# Environment stuff goes in /etc/profile
+
+# are we an interactive shell?
+if [ "$PS1" ]; then
+  # Turn on checkwinsize
+  shopt -s checkwinsize
+  txtred='\[\e[0;31m\]'
+  txtgreen='\[\e[0;32m\]'
+  txtclr='\[\e[0m\]'
+  buffer="${txt<%= @colour %>}[${txtclr} "
+  if [[ $UID = 0 ]]; then
+    buffer="${buffer}${txtred}\u${txtclr}@"
+  else
+    buffer="${buffer}\u@"
+  fi
+  fqdn=$(hostname -f)
+  fqdn_short=${fqdn%.lab.stopso.com*}
+  if [[ fqdn =~ prd ]]; then
+    buffer="${buffer}${txtred}${fqdn_short}${txtclr} "
+  else
+    buffer="${buffer}${fqdn_short} "
+  fi
+  buffer="${buffer}\W ${txt<%= @colour %>}]${txtclr}\\$ "
+  PS1="${buffer}"
+  PATH=$PATH:/usr/local/bin:/opt/puppet/bin:/usr/share/scripts
+fi
+
+if ! shopt -q login_shell ; then # We're not a login shell
+	# Need to redefine pathmunge, it get's undefined at the end of /etc/profile
+  pathmunge () {
+    if ! echo $PATH | /bin/egrep -q "(^|:)$1($|:)" ; then
+      if [ "$2" = "after" ] ; then
+        PATH=$PATH:$1
+      else
+        PATH=$1:$PATH
+      fi
+    fi
+  }
+
+	# Only display echos from profile.d scripts if we are no login shell
+  # and interactive - otherwise just process them to set envvars
+  for i in /etc/profile.d/*.sh; do
+    if [ -r "$i" ]; then
+      if [ "$PS1" ]; then
+        . $i
+      else
+        . $i &> /dev/null
+      fi
+    fi
+  done
+
+	unset i
+	unset pathmunge
+fi
+
+# Run anything in /etc/bashrc.d
+for i in /etc/bashrc.d/*; do
+  if [ -r "$i" ]; then
+    if [ "$PS1" ]; then
+      . $i
+    else
+      . $i &> /dev/null
+    fi
+  fi
+done
