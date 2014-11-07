@@ -6,7 +6,9 @@
 #
 # Copyright 2013
 #
-class bash {
+class bash(
+  $bashrc = $bash::params::bashrc,
+) inherits bash::params {
 
     package { 'bash':
         ensure => present,
@@ -26,7 +28,7 @@ class bash {
             recurse => true,
             force => true,
             purge => true;
-        '/etc/bashrc':
+        $bashrc:
             content => template("${module_name}/bashrc.erb");
     }
 
