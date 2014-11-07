@@ -10,30 +10,34 @@
 # System wide functions and aliases
 # Environment stuff goes in /etc/profile
 
-# are we an interactive shell?
-if [ "$PS1" ]; then
-  # Turn on checkwinsize
-  shopt -s checkwinsize
-  txtred='\[\e[0;31m\]'
-  txtgreen='\[\e[0;32m\]'
-  txtclr='\[\e[0m\]'
-  buffer="${txt<%= @colour %>}[${txtclr} "
-  if [[ $UID = 0 ]]; then
-    buffer="${buffer}${txtred}\u${txtclr}@"
-  else
-    buffer="${buffer}\u@"
-  fi
-  fqdn=$(hostname -f)
-  fqdn_short=${fqdn%.lab.stopso.com*}
-  if [[ fqdn =~ prd ]]; then
-    buffer="${buffer}${txtred}${fqdn_short}${txtclr} "
-  else
-    buffer="${buffer}${fqdn_short} "
-  fi
-  buffer="${buffer}\W ${txt<%= @colour %>}]${txtclr}\\$ "
-  PS1="${buffer}"
-  PATH=$PATH:/usr/local/bin:/opt/puppet/bin:/usr/share/scripts
+# If not running interactively, don't do anything
+[ -z "$PS1" ] && return
+
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
+txtred='\[\e[0;31m\]'
+txtgreen='\[\e[0;32m\]'
+txtclr='\[\e[0m\]'
+
+buffer="${txt<%= @colour %>}[${txtclr} "
+if [[ $UID = 0 ]]; then
+  buffer="${buffer}${txtred}\u${txtclr}@"
+else
+  buffer="${buffer}\u@"
 fi
+fqdn=$(hostname -f)
+fqdn_short=${fqdn%.lab.stopso.com*}
+if [[ fqdn =~ prd ]]; then
+  buffer="${buffer}${txtred}${fqdn_short}${txtclr} "
+else
+  buffer="${buffer}${fqdn_short} "
+fi
+buffer="${buffer}\W ${txt<%= @colour %>}]${txtclr}\\$ "
+PS1="${buffer}"
+
+PATH=$PATH:/usr/local/bin:/opt/puppet/bin:/usr/share/scripts
 
 if ! shopt -q login_shell ; then # We're not a login shell
 	# Need to redefine pathmunge, it get's undefined at the end of /etc/profile
