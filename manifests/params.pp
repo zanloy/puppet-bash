@@ -9,4 +9,9 @@ class bash::params {
     }
   }
 
+  $environment = ''
+  $domain_suffix = ''
+  $editing_mode = 'emacs'
+  $bashrcd_purge = True
+
 }

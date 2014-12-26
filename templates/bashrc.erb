@@ -1,12 +1,7 @@
-# ******************************************************************
-# *                                                                *
-# * This file is managed by puppet. Do not manually edit this file *
-# * or anything you change will be reverted on the next puppet     *
-# * agent check-in.                                                *
-# *                                                                *
-# ******************************************************************
+# This file is managed by puppet. Do not manually edit this file
+# or anything you change will be reverted
 
-<% @colour = (@environment == 'prd' ? 'red' : 'green') -%>
+<% @colour = (@environment == 'production' ? 'red' : 'green') -%>
 # System wide functions and aliases
 # Environment stuff goes in /etc/profile
 
@@ -28,7 +23,7 @@ else
   buffer="${buffer}\u@"
 fi
 fqdn=$(hostname -f)
-fqdn_short=${fqdn%.lab.stopso.com*}
+fqdn_short=${fqdn%.<%= @domain_suffix %>*}
 if [[ fqdn =~ prd ]]; then
   buffer="${buffer}${txtred}${fqdn_short}${txtclr} "
 else
@@ -40,7 +35,7 @@ PS1="${buffer}"
 PATH=$PATH:/usr/local/bin:/opt/puppet/bin:/usr/share/scripts
 
 if ! shopt -q login_shell ; then # We're not a login shell
-	# Need to redefine pathmunge, it get's undefined at the end of /etc/profile
+  # Need to redefine pathmunge, it get's undefined at the end of /etc/profile
   pathmunge () {
     if ! echo $PATH | /bin/egrep -q "(^|:)$1($|:)" ; then
       if [ "$2" = "after" ] ; then
@@ -51,7 +46,7 @@ if ! shopt -q login_shell ; then # We're not a login shell
     fi
   }
 
-	# Only display echos from profile.d scripts if we are no login shell
+  # Only display echos from profile.d scripts if we are no login shell
   # and interactive - otherwise just process them to set envvars
   for i in /etc/profile.d/*.sh; do
     if [ -r "$i" ]; then
@@ -63,8 +58,8 @@ if ! shopt -q login_shell ; then # We're not a login shell
     fi
   done
 
-	unset i
-	unset pathmunge
+  unset i
+  unset pathmunge
 fi
 
 # Run anything in /etc/bashrc.d
