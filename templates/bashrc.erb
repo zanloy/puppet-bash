@@ -23,7 +23,7 @@ else
   buffer="${buffer}\u@"
 fi
 fqdn=$(hostname -f)
-fqdn_short=${fqdn%.<%= @domain_suffix %>*}
+fqdn_short=${fqdn%<%= @trim_suffix %>*}
 if [[ fqdn =~ prd ]]; then
   buffer="${buffer}${txtred}${fqdn_short}${txtclr} "
 else
@@ -61,6 +61,11 @@ if ! shopt -q login_shell ; then # We're not a login shell
   unset i
   unset pathmunge
 fi
+
+<% if @vi_mode == true then -%>
+# Use vi keybind
+set -o vi
+<% end -%>
 
 # Run anything in /etc/bashrc.d
 for i in /etc/bashrc.d/*; do

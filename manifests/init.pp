@@ -8,30 +8,32 @@
 #
 class bash(
   $environment   = $bash::params::environment,
+  $package       = $bash::params::package,
   $bashrc        = $bash::params::bashrc,
-  $domain_suffix = $bash::params::domain_suffix,
-  $editing_mode  = $bash::params::editing_mode,
+  $bashrcd       = $bash::params::bashrcd,
   $bashrcd_purge = $bash::params::bashrcd_purge,
+  $trim_suffix   = $bash::params::trim_suffix,
+  $vi_mode       = $bash::params::vi_mode,
 ) inherits bash::params {
 
-  package { 'bash':
+  package { $package:
     ensure => present,
   }
 
   # Set file resource defaults
   File {
-    owner => 'root',
-    group => 'root',
-    mode => '0444',
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0444',
     require => Package['bash'],
   }
 
-  file { '/etc/bashrc.d':
-    ensure => directory,
-    source => "puppet:///modules/${module_name}/etc/bashrc.d",
+  file { $bashrcd:
+    ensure  => directory,
+    source  => "puppet:///modules/${module_name}/etc/bashrc.d",
     recurse => true,
-    force => true,
-    purge => $bashrcd_purge,
+    force   => true,
+    purge   => $bashrcd_purge,
   }
 
   file { $bashrc:

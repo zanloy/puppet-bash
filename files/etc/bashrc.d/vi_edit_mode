@@ -1,4 +1,0 @@
-if [[ -f ~/.vienabled ]]
-then
-    set -o vi
-fi

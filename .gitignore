@@ -1,0 +1,4 @@
+.bundle/
+pkg/
+*.swp
+.DS_Store

@@ -1,0 +1,19 @@
+{
+  "name": "zanloy-bash",
+  "version": "0.1.0",
+  "author": "zanloy",
+  "summary": "Manage BASH via puppet.",
+  "license": "Apache-2.0",
+  "source": "https://github.com/zanloy/puppet-bash",
+  "project_page": "https://github.com/zanloy/puppet-bash",
+  "issues_url": "https://github.com/zanloy/puppet-bash/issues",
+  "description": "Manage bash environment and configuration via puppet.",
+  "dependencies": [],
+  "operatingsystem_support": [
+    {"operatingsystem": "CentOS"},
+    {"operatingsystem": "Debian"},
+    {"operatingsystem": "OracleLinux"},
+    {"operatingsystem": "RedHat"},
+    {"operatingsystem": "Ubuntu"}
+  ]
+}
