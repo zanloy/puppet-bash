@@ -35,7 +35,7 @@ class { '::bash':
 * environment
   * Default: ''
   * Description: The environment for the node. If set to 'production' then the
-    bash prompt uses red colors to alert the user that it is in production.
+    bash prompt uses red colors to alert the user that they are in production.
 * trim_suffix
   * Default: ''
   * Description: The suffix to trim from the fqdn for the bash prompt.
