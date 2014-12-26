@@ -76,8 +76,8 @@ alias <%= key %>='<%= value %>'
 <%   end -%>
 <% end -%>
 
-# Run anything in /etc/bashrc.d
-for i in /etc/bashrc.d/*; do
+# Run anything in <%= @bashrcd %>
+for i in <%= @bashrcd %>/*; do
   if [ -r "$i" ]; then
     if [ "$PS1" ]; then
       . $i
