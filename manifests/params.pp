@@ -20,6 +20,7 @@ class bash::params {
   }
 
   $environment = ''
+  $append_paths = [ ]
   $trim_suffix = ''
   $vi_mode = False
   $bashrcd = '/etc/bashrc.d'

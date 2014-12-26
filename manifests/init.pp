@@ -14,6 +14,7 @@ class bash(
   $bashrcd       = $bash::params::bashrcd,
   $bashrcd_purge = $bash::params::bashrcd_purge,
   $environment   = $bash::params::environment,
+  $append_paths  = $bash::params::append_paths,
   $trim_suffix   = $bash::params::trim_suffix,
   $vi_mode       = $bash::params::vi_mode,
 ) inherits bash::params {

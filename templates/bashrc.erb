@@ -32,7 +32,9 @@ fi
 buffer="${buffer}\W ${txt<%= @colour %>}]${txtclr}\\$ "
 PS1="${buffer}"
 
-PATH=$PATH:/usr/local/bin:/opt/puppet/bin:/usr/share/scripts
+<% if @append_paths.is_a?(Array) and @append_paths.length != 0 then -%>
+PATH=$PATH:<%= @append_paths.join(':') %>
+<% end -%>
 
 if ! shopt -q login_shell ; then # We're not a login shell
   # Need to redefine pathmunge, it get's undefined at the end of /etc/profile

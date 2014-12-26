@@ -50,6 +50,19 @@ describe 'bash' do
             .with_content(/^buffer="\$\{txtred\}.*$/)
         end
       end
+      context 'with default append_paths' do
+        it do
+          should contain_file(values[:bashrc]) \
+            .without_content(/^PATH=\$PATH:$/)
+        end
+      end
+      context 'with custom append_paths' do
+        let(:params) { { append_paths: ['/scripts', '/bin'] } }
+        it do
+          should contain_file(values[:bashrc]) \
+            .with_content(/^PATH=\$PATH:\/scripts:\/bin$/)
+        end
+      end
       context 'with default trim_suffix' do
         it do
           should contain_file(values[:bashrc]) \
