@@ -7,11 +7,11 @@
 # Copyright 2014
 #
 class bash(
-  $environment   = $bash::params::environment,
   $package       = $bash::params::package,
   $bashrc        = $bash::params::bashrc,
   $bashrcd       = $bash::params::bashrcd,
   $bashrcd_purge = $bash::params::bashrcd_purge,
+  $environment   = $bash::params::environment,
   $trim_suffix   = $bash::params::trim_suffix,
   $vi_mode       = $bash::params::vi_mode,
 ) inherits bash::params {
