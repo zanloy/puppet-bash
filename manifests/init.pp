@@ -17,6 +17,7 @@ class bash(
   $append_paths  = $bash::params::append_paths,
   $trim_suffix   = $bash::params::trim_suffix,
   $vi_mode       = $bash::params::vi_mode,
+  $aliases       = $bash::params::aliases,
 ) inherits bash::params {
 
   package { $package:

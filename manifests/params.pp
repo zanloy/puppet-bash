@@ -23,6 +23,7 @@ class bash::params {
   $append_paths = [ ]
   $trim_suffix = ''
   $vi_mode = False
+  $aliases = { }
   $bashrcd = '/etc/bashrc.d'
   $bashrcd_purge = true
 

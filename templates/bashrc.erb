@@ -69,6 +69,13 @@ fi
 set -o vi
 <% end -%>
 
+<% if @aliases.length > 0 then -%>
+# Aliases
+<%   @aliases.each do |key, value| -%>
+alias <%= key %>='<%= value %>'
+<%   end -%>
+<% end -%>
+
 # Run anything in /etc/bashrc.d
 for i in /etc/bashrc.d/*; do
   if [ -r "$i" ]; then
