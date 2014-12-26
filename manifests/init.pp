@@ -1,3 +1,5 @@
+# Read README.md file for full documentation
+#
 # === Authors
 #
 # Zan Loy <zan.loy@gmail.com>
