@@ -23,6 +23,6 @@ class bash::params {
   $trim_suffix = ''
   $vi_mode = False
   $bashrcd = '/etc/bashrc.d'
-  $bashrcd_purge = True
+  $bashrcd_purge = true
 
 }

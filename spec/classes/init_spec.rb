@@ -19,22 +19,22 @@ describe 'bash' do
       context 'with default bashrcd' do
         it { should contain_file('/etc/bashrc.d') }
         context 'with bashrcd_purge' do
-          it { should contain_file('/etc/bashrc.d').with_purge('True') }
+          it { should contain_file('/etc/bashrc.d').with_purge('true') }
         end
         context 'with bashrcd_purge false' do
-          let(:params) { { bashrcd_purge: 'False' } }
-          it { should contain_file('/etc/bashrc.d').with_purge('False') }
+          let(:params) { { bashrcd_purge: 'false' } }
+          it { should contain_file('/etc/bashrc.d').with_purge('false') }
         end
       end
       context 'with custom bashrcd' do
         let(:params) { { bashrcd: '/etc/bash/bashrc.d' } }
         it { should contain_file('/etc/bash/bashrc.d') }
         context 'with bashrcd_purge' do
-          it { should contain_file('/etc/bash/bashrc.d').with_purge('True') }
+          it { should contain_file('/etc/bash/bashrc.d').with_purge('true') }
         end
         context 'with bashrcd_purge false' do
-          let(:params) { super().merge({bashrcd_purge: 'False'}) }
-          it { should contain_file('/etc/bash/bashrc.d').with_purge('False') }
+          let(:params) { super().merge({bashrcd_purge: 'false'}) }
+          it { should contain_file('/etc/bash/bashrc.d').with_purge('false') }
         end
       end
       context 'without environment' do
