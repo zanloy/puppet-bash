@@ -1,4 +1,4 @@
-# puppet-bash
+# puppet-bash [![Build Status](https://travis-ci.org/zanloy/puppet-bash.svg?branch=master)](https://travis-ci.org/zanloy/puppet-bash)
 
 Manage BASH via puppet.
 
