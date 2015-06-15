@@ -46,3 +46,7 @@ class { '::bash':
 * vi_mode
   * Allowed valued: [true, false]
   * Description: Whether to use vi keybinds instead of emacs.
+* additional_lines
+  * Default: []
+  * Description: An array of lines to be added at the end of /etc/bashrc
+  * Example: ['umask 022']
