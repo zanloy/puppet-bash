@@ -9,15 +9,16 @@
 # Copyright 2014
 #
 class bash(
-  $package       = $bash::params::package,
-  $bashrc        = $bash::params::bashrc,
-  $bashrcd       = $bash::params::bashrcd,
-  $bashrcd_purge = $bash::params::bashrcd_purge,
-  $environment   = $bash::params::environment,
-  $append_paths  = $bash::params::append_paths,
-  $trim_suffix   = $bash::params::trim_suffix,
-  $vi_mode       = $bash::params::vi_mode,
-  $aliases       = $bash::params::aliases,
+  $package          = $bash::params::package,
+  $bashrc           = $bash::params::bashrc,
+  $bashrcd          = $bash::params::bashrcd,
+  $bashrcd_purge    = $bash::params::bashrcd_purge,
+  $environment      = $bash::params::environment,
+  $append_paths     = $bash::params::append_paths,
+  $trim_suffix      = $bash::params::trim_suffix,
+  $vi_mode          = $bash::params::vi_mode,
+  $aliases          = $bash::params::aliases,
+  $additional_lines = [],
 ) inherits bash::params {
 
   package { $package:
