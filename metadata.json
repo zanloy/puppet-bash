@@ -1,6 +1,6 @@
 {
   "name": "zanloy-bash",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "author": "zanloy",
   "summary": "Manage BASH via puppet.",
   "license": "Apache-2.0",
