@@ -22,9 +22,9 @@ class bash::params {
   $environment = ''
   $append_paths = [ ]
   $trim_suffix = ''
-  Boolean $vi_mode = false
+  $vi_mode = false
   $aliases = { }
   $bashrcd = '/etc/bashrc.d'
-  Boolean $bashrcd_purge = true
+  $bashrcd_purge = true
 
 }
