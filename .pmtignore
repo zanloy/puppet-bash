@@ -1,0 +1,10 @@
+.bundle/
+Gemfile.lock
+pkg/
+*.swp
+.DS_Store
+spec/
+.*
+Gemfile
+README.md
+Rakefile
