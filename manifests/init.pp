@@ -30,7 +30,7 @@ class bash(
     owner   => 'root',
     group   => 'root',
     mode    => '0444',
-    require => Package['bash'],
+    require => Package[$package],
   }
 
   file { $bashrcd:
@@ -42,7 +42,7 @@ class bash(
   }
 
   file { $bashrc:
-    ensure => file,
+    ensure  => file,
     content => template("${module_name}/bashrc.erb");
   }
 
