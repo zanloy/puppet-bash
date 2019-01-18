@@ -1,0 +1,9 @@
+---
+Layout/AlignHash:
+  EnforcedHashRocketStyle: 'table'
+Metrics/BlockLength:
+  Enabled: false
+Metrics/LineLength:
+  Enabled: false
+Style/RegexpLiteral:
+  EnforcedStyle: 'mixed'

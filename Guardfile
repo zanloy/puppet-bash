@@ -1,7 +1,9 @@
-#ignore %r{^spec/fixtures/$}
-directories %w{manifests spec}
+# frozen_string_literal: true
 
-#guard 'rake', task: 'rspec' do
+# ignore %r{^spec/fixtures/$}
+directories %w[manifests spec]
+
+# guard 'rake', task: 'rspec' do
 guard 'rspec', cmd: 'rspec --color --format documentation' do
   # Classes
   watch(%r{^manifests/(.+)\.pp$}) do |m|

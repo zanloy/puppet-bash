@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 osfamilies = {
   'ArchLinux' => { package: 'core/bash', bashrc: '/etc/bash.bashrc' },
   'RedHat'    => { package: 'bash', bashrc: '/etc/bashrc' },
-  'Debian'    => { package: 'bash', bashrc: '/etc/bash.bashrc' },
+  'Debian'    => { package: 'bash', bashrc: '/etc/bash.bashrc' }
 }
 
 describe 'bash' do
@@ -30,7 +32,7 @@ describe 'bash' do
           it { should contain_file('/etc/bash/bashrc.d').with_purge('true') }
         end
         context 'with bashrcd_purge false' do
-          let(:params) { super().merge({bashrcd_purge: 'false'}) }
+          let(:params) { super().merge(bashrcd_purge: 'false') }
           it { should contain_file('/etc/bash/bashrc.d').with_purge('false') }
         end
       end
@@ -46,7 +48,7 @@ describe 'bash' do
       end
       context 'with custom append_paths' do
         let(:params) { { append_paths: ['/scripts', '/bin'] } }
-        it { should contain_file(values[:bashrc]).with_content(/^PATH=\$PATH:\/scripts:\/bin$/) }
+        it { should contain_file(values[:bashrc]).with_content(%r{^PATH=\$PATH:/scripts:/bin$}) }
       end
       context 'with default trim_suffix' do
         it { should contain_file(values[:bashrc]).with_content(/^fqdn_short=\$\{fqdn%\*\}$/) }
@@ -66,9 +68,9 @@ describe 'bash' do
         it { should contain_file(values[:bashrc]).without_content(/^alias .*$/) }
       end
       context 'with custom aliases' do
-        let(:params) { { aliases: {'yum' => 'sudo yum'} } }
+        let(:params) { { aliases: { 'yum' => 'sudo yum' } } }
         it { should contain_file(values[:bashrc]).with_content(/^alias yum='sudo yum'$/) }
       end
-    end #context osfamily
-  end #osfamily.each
-end #describe
+    end
+  end
+end
