@@ -6,5 +6,5 @@ pkg/
 spec/
 .*
 Gemfile
-README.md
+Guardfile
 Rakefile
